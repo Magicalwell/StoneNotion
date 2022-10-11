@@ -1,47 +1,38 @@
 <template>
   <div class="generation-body">
-    <div class="fake-div" :style="{ width: isMobile ? '0px' : '260px' }"></div>
     <tool-Box></tool-Box>
-    <app-Main>
-      <SettingBar />
-    </app-Main>
-    <div class="fake-div" :style="{ width: isMobile ? '0px' : '340px' }"></div>
-    <setting-Box></setting-Box>
+    <app-Editor style="flex: 1"></app-Editor>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import appMain from './layout/components/appMain/appMain.vue'
-import toolBox from './layout/components/toolBox/toolBox.vue'
-import settingBox from './layout/components/settingBox/settingBox.vue'
-import SettingBar from './layout/components/settingBar/index.vue'
-import { useWindowSizeFn } from '../views/layout/components/switchBtn/useWindowSizeFn'
+import { defineComponent, ref } from "vue";
+import appEditor from "./editor/index.vue";
+import toolBox from "./layout/components/toolBox/toolBox.vue";
+import { useWindowSizeFn } from "../views/layout/components/switchBtn/useWindowSizeFn";
 export default defineComponent({
-  name: 'Home',
+  name: "Home",
   components: {
-    appMain,
+    appEditor,
     toolBox,
-    settingBox,
-    SettingBar
   },
   setup() {
-    const isMobile = ref(false)
+    const isMobile = ref(false);
     const responsiveSwitch = () => {
-      const windowWidth = document.documentElement.clientWidth
+      const windowWidth = document.documentElement.clientWidth;
       if (windowWidth > 600) {
-        isMobile.value = false
+        isMobile.value = false;
       } else {
-        isMobile.value = true
+        isMobile.value = true;
       }
-    }
-    responsiveSwitch()
-    useWindowSizeFn(responsiveSwitch, 150, { immediate: true })
+    };
+    responsiveSwitch();
+    useWindowSizeFn(responsiveSwitch, 150, { immediate: true });
     return {
-      isMobile
-    }
-  }
-})
+      isMobile,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped>
@@ -55,7 +46,7 @@ export default defineComponent({
 .generation-body {
   position: relative;
   display: flex;
-  height: calc(100vh - 100px);
+  height: 100vh;
   overflow-x: hidden;
 }
 </style>

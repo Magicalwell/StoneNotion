@@ -96,7 +96,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .tool-box {
-  position: absolute;
+  position: relative;
   background: #f5f5f5;
   width: fit-content;
   transition: width 300ms ease;

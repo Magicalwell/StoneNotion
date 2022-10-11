@@ -1,19 +1,14 @@
 <template>
   <div class="generation-container">
-    <top-Head class="generation-head"></top-Head>
     <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import topHead from './layout/components/topHead/topHead.vue'
+import { defineComponent } from "vue";
 export default defineComponent({
-  name: 'Home',
-  components: {
-    topHead
-  }
-})
+  name: "Home",
+});
 </script>
 
 <style lang="scss" scoped>

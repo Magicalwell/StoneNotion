@@ -1,20 +1,19 @@
 <template>
   <div class="appMain">
     <!-- <component :is=""></component> -->
-    <slot></slot>
     <app-Editor></app-Editor>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import appEditor from '../../../editor/index.vue'
+import { defineComponent } from "vue";
+import appEditor from "../../../editor/index.vue";
 export default defineComponent({
   components: {
-    appEditor
+    appEditor,
   },
-  methods: {}
-})
+  methods: {},
+});
 </script>
 
 <style lang="scss" scoped>
