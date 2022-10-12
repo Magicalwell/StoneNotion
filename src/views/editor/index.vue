@@ -1,11 +1,12 @@
 <template>
-  <div
+  <!-- <div
     id="editor-container"
     @click.self="generationNewInput"
     @drop="drogitem"
     @dragover="dragOveritem($event)"
     class="editor-container"
-  >
+  > -->
+  <div id="editor-container" class="editor-container">
     <h1>{{ page.properties.name }}</h1>
     <draggable :list="page.children" v-bind="dragOptions" item-key="id">
       <template #item="{ element }">
@@ -20,6 +21,7 @@ import { useStore } from 'vuex'
 import BlockComponents from './components/BlockComponent.vue'
 import draggable from 'vuedraggable'
 import widgets from '../components/map'
+import { dragOptions } from '@/setting/index'
 export default defineComponent({
   components: { draggable, BlockComponents },
   setup() {
@@ -30,7 +32,9 @@ export default defineComponent({
     const mainRef = ref([])
 
     console.log(widgets, 'widgetswidgetswidgets')
-    store.commit('INT_WIDGETS', widgets)
+    store.commit('INT_WIDGETS', { widgets })
+    console.log(store.getters.flatWidgets, 'store.getters.flatWidgets')
+
     if (!store.state.pageBox.children) {
       store.commit('SET_DEFAULT_PAGE')
     }
@@ -55,6 +59,7 @@ export default defineComponent({
       store.commit('ADD_NEW_DEFAULT_INPUT', store.state.dargActiveItem.id)
     }
     return {
+      dragOptions,
       page,
       mainRef,
       generationNewInput, // 点击空白新增空列表

@@ -119,7 +119,7 @@ export default createStore({
             // id: 'e79a0b74-3aba-4149-9f74-0bb5791a6ee6' 暂时不做多人编辑 只显示谁编辑了
           },
           has_children: false,
-          type: 'paragraph',
+          type: 'input',
           archived: false,
           paragraph: {
             rich_text: 'Lacinato kal2312321312e',
@@ -141,7 +141,7 @@ export default createStore({
             // id: 'e79a0b74-3aba-4149-9f74-0bb5791a6ee6' 暂时不做多人编辑 只显示谁编辑了
           },
           has_children: true,
-          type: 'paragraph',
+          type: 'input',
           archived: false,
           paragraph: {
             rich_text: 'tada!',
@@ -163,7 +163,7 @@ export default createStore({
                 // id: 'e79a0b74-3aba-4149-9f74-0bb5791a6ee6' 暂时不做多人编辑 只显示谁编辑了
               },
               has_children: false,
-              type: 'paragraph',
+              type: 'input',
               archived: false,
               paragraph: {
                 rich_text: 'tada!',
@@ -176,7 +176,8 @@ export default createStore({
       ]
     },
     focusId: '',
-    addData: ''
+    addData: '',
+    widgets: []
   },
   mutations: {
     ADD_NEW_DEFAULT_INPUT(state: any, data) {
@@ -252,6 +253,9 @@ export default createStore({
           tree.splice(index, 1)
         }
       })
+    },
+    INT_WIDGETS(state, { widgets }) {
+      state.widgets = widgets
     }
   },
   getters: {
@@ -263,6 +267,24 @@ export default createStore({
     },
     pageData: (state: any) => {
       return state.pageBox
+    },
+    flatWidgets: ({ widgets }) => {
+      const serialized = {}
+      if (!Array.isArray(widgets)) {
+        return serialized
+      }
+      widgets.forEach((item) => {
+        if (!Array.isArray(item.widgets)) {
+          return
+        }
+        item.widgets.forEach((w) => {
+          // if (typeof w.Schema === 'function') {
+          //   serialized[w.Schema] = w
+          // }
+          serialized[w.Schema] = w
+        })
+      })
+      return serialized
     }
   },
   actions: {},

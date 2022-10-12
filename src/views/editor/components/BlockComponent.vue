@@ -12,7 +12,7 @@
       </div>
     </div>
     <div>
-      <component :is="schema.type" :schema="schema"></component>
+      <component :is="flatWidgets[schema.type].View" :schema="schema"></component>
     </div>
   </div>
 </template>
@@ -41,8 +41,9 @@ export default defineComponent({
   setup(props) {
     const hoverContainer = ref([])
     const store = useStore()
+    const flatWidgets = store.getters.flatWidgets
 
-    return {}
+    return { flatWidgets }
   }
 })
 </script>
