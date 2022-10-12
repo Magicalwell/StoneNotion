@@ -1,49 +1,63 @@
 <template>
-  <div class="block-item">
-    <draggable :list="childComponentList" v-bind="dragOptions" item-key="id">
-      <template #item="{ element }">
-        <template v-if="element.children">
-          <BlockComponents
-            :child-component-list="element.children"
-          ></BlockComponents>
-        </template>
-        <component
-          v-else
-          :is="element.type"
-          :schema="element"
-          :show-nested-editor="false"
-          :globalOptions="globalOptions"
-        ></component>
-      </template>
-    </draggable>
+  <div class="block-item" style="height: 40px">
+    <div class="item-btn-box">
+      <div class="item-btn item-widget-btn-delete">
+        <delete-outlined />
+      </div>
+      <div class="item-btn item-widget-btn-clone">
+        <plus-outlined />
+      </div>
+      <div class="item-btn item-widget-btn-move">
+        <setting-outlined />
+      </div>
+    </div>
+    <div>
+      <component :is="schema.type" :schema="schema"></component>
+    </div>
   </div>
 </template>
 <script lang="ts">
-import { defineComponent, ref, reactive } from "vue";
-import { useStore } from "vuex";
-import draggable from "vuedraggable";
+import { defineComponent, ref } from 'vue'
+import { useStore } from 'vuex'
+import {
+  DeleteOutlined,
+  PlusOutlined,
+  SettingOutlined
+} from '@ant-design/icons-vue'
 export default defineComponent({
-  name: "BlockComponents",
-  components: { draggable },
+  name: 'BlockComponents',
+  components: { DeleteOutlined, PlusOutlined, SettingOutlined },
   props: {
     childComponentList: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     globalOptions: {
       type: Object,
-      default: () => ({}),
+      default: () => ({})
     },
-    schema: { type: Object },
+    schema: { type: Object }
   },
   setup(props) {
-    const hoverContainer = ref([]);
-    const store = useStore();
-    console.log(props.childComponentList);
+    const hoverContainer = ref([])
+    const store = useStore()
 
-    return {};
-  },
-});
+    return {}
+  }
+})
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.block-item {
+  display: flex;
+  .item-btn-box {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    .item-btn {
+      font-size: 20px;
+      padding: 2px;
+    }
+  }
+}
+</style>

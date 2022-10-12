@@ -1,38 +1,38 @@
 <template>
   <div class="generation-body">
-    <tool-Box></tool-Box>
+    <!-- <tool-Box></tool-Box> -->
     <app-Editor style="flex: 1"></app-Editor>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
-import appEditor from "./editor/index.vue";
-import toolBox from "./layout/components/toolBox/toolBox.vue";
-import { useWindowSizeFn } from "../views/layout/components/switchBtn/useWindowSizeFn";
+import { defineComponent, ref } from 'vue'
+import appEditor from './editor/index.vue'
+import toolBox from './layout/components/toolBox/toolBox.vue'
+import { useWindowSizeFn } from '../views/layout/components/switchBtn/useWindowSizeFn'
 export default defineComponent({
-  name: "Home",
+  name: 'Home',
   components: {
-    appEditor,
-    toolBox,
+    appEditor
+    // toolBox,
   },
   setup() {
-    const isMobile = ref(false);
+    const isMobile = ref(false)
     const responsiveSwitch = () => {
-      const windowWidth = document.documentElement.clientWidth;
+      const windowWidth = document.documentElement.clientWidth
       if (windowWidth > 600) {
-        isMobile.value = false;
+        isMobile.value = false
       } else {
-        isMobile.value = true;
+        isMobile.value = true
       }
-    };
-    responsiveSwitch();
-    useWindowSizeFn(responsiveSwitch, 150, { immediate: true });
+    }
+    responsiveSwitch()
+    useWindowSizeFn(responsiveSwitch, 150, { immediate: true })
     return {
-      isMobile,
-    };
-  },
-});
+      isMobile
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>
