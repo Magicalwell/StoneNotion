@@ -1,14 +1,13 @@
-// import * as _setting from './setting'
-// export const setting = _setting
+import Editor from './widgets/editor'
+import inputWidget from './widgets/input'
 // export { default as viewExtend } from './extends/view'
 // export { default as entry } from './entery/index.vue'
-import inputWidget from './widgets/input'
 
 // import radioWidget from './widgets/radio'
 
 // import tableWidget from './widgets/table'
 // import gridWidget from './widgets/grid'
-export { inputWidget }
+export { inputWidget, Editor }
 export default [
   {
     title: '常规',
