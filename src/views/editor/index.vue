@@ -7,23 +7,32 @@
     class="editor-container"
   > -->
   <div id="editor-container" class="editor-container">
-    <h1>{{ page.properties.name }}</h1>
-    <draggable :list="page.children" v-bind="dragOptions" item-key="id">
-      <template #item="{ element }">
-        <BlockComponents :key="element.id" :schema="element"> </BlockComponents>
-      </template>
-    </draggable>
+    <PageBar></PageBar>
+    <div class="editor-main">
+      <!-- <h1 style="text-align: center">{{ page.properties.name }}</h1> -->
+      <TitleWidgets :schema="page"></TitleWidgets>
+      <div style="flex: 1">
+        <draggable :list="page.children" v-bind="dragOptions" item-key="id">
+          <template #item="{ element }">
+            <BlockComponents :key="element.id" :schema="element">
+            </BlockComponents>
+          </template>
+        </draggable>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts">
 import { defineComponent, ref, reactive } from 'vue'
 import { useStore } from 'vuex'
 import BlockComponents from './components/BlockComponent.vue'
+import TitleWidgets from '../components/widgets/titlewidgets/index.vue'
+import PageBar from './components/PageBar.vue'
 import draggable from 'vuedraggable'
 import widgets from '../components/map'
 import { dragOptions } from '@/setting/index'
 export default defineComponent({
-  components: { draggable, BlockComponents },
+  components: { draggable, BlockComponents, PageBar, TitleWidgets },
   setup() {
     const store = useStore()
     const page = store.getters.pageData
@@ -31,7 +40,7 @@ export default defineComponent({
     const hoverContainer = ref([])
     const mainRef = ref([])
 
-    console.log(widgets, 'widgetswidgetswidgets')
+    console.log(page, 'widgetswidgetswidgets')
     store.commit('INT_WIDGETS', { widgets })
     console.log(store.getters.flatWidgets, 'store.getters.flatWidgets')
 
@@ -88,6 +97,14 @@ export default defineComponent({
 .fade-btn-label-leave-from {
   opacity: 1;
 }
+// #editor-container {
+//   position: relative;
+//   height: 100%;
+//   overflow-y: auto;
+//   padding-bottom: 80px;
+//   width: 100%;
+//   padding: 40px;
+// }
 #editor-container {
   position: relative;
   height: 100%;
@@ -95,6 +112,11 @@ export default defineComponent({
   padding-bottom: 80px;
   width: 100%;
   padding: 40px;
+  .editor-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
 }
 .control-label {
   position: absolute;

@@ -1,6 +1,6 @@
 <template>
   <div class="generation-body">
-    <!-- <tool-Box></tool-Box> -->
+    <tool-Box></tool-Box>
     <app-Editor style="flex: 1"></app-Editor>
   </div>
 </template>
@@ -13,8 +13,8 @@ import { useWindowSizeFn } from '../views/layout/components/switchBtn/useWindowS
 export default defineComponent({
   name: 'Home',
   components: {
-    appEditor
-    // toolBox,
+    appEditor,
+    toolBox
   },
   setup() {
     const isMobile = ref(false)
