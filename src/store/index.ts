@@ -101,7 +101,25 @@ export default createStore({
       properties: {
         name: {
           title: [{ type: 'text', text: '测试标题h1' }]
-        }
+        },
+        list: [
+          {
+            type: 'createTime',
+            value: '20221024',
+            properties: {
+              onlyRead: true
+            },
+            id: 1
+          },
+          {
+            type: 'updateTime',
+            value: '20221024',
+            properties: {
+              onlyRead: true
+            },
+            id: 2
+          }
+        ]
       },
       has_children: true,
       children: [

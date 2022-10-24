@@ -25,6 +25,7 @@
     "core-js": "^3.6.5",
     "fabric": "^5.2.1",
     "prismjs": "^1.28.0",
+    "tippy.js": "^6.3.7",
     "vue": "^3.2.31",
     "vue-prism-editor": "^2.0.0-alpha.2",
     "vue-router": "^4.0.0-0",

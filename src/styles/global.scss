@@ -35,3 +35,8 @@ textarea {
 }
 
 // 上面样式为覆盖ant-design的默认样式
+.tippy-box[data-theme~='notion'] {
+  background-color: white;
+  border: 1px solid #ccc;
+  color: yellow;
+}
